@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Aashish Kumar Pandey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">AKP</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="experience.html">Experience</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<main>
+  <div class="page-header">
+    <div class="breadcrumb">Portfolio / Contact</div>
+    <h1>Get in <span class="accent">Touch</span></h1>
+    <p>Open to new opportunities, collaborations, or just a tech conversation. Reach out anytime.</p>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h2>Let's Connect</h2>
+      <p>Whether you have a project in mind, a job opportunity, or want to discuss backend architecture — I'm always happy to talk. Based in Noida, India, working with clients globally.</p>
+
+      <div class="contact-links">
+        <a href="mailto:akpandey63076@gmail.com" class="contact-link">
+          <span class="cl-icon">✉</span>
+          <div>
+            <div class="cl-text">Email</div>
+            <div class="cl-val">akpandey63076@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+918595828919" class="contact-link">
+          <span class="cl-icon">📞</span>
+          <div>
+            <div class="cl-text">Phone</div>
+            <div class="cl-val">+91 8595828919</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/aashish-kumar-pandey-30166a198" target="_blank" class="contact-link">
+          <span class="cl-icon">🔗</span>
+          <div>
+            <div class="cl-text">LinkedIn</div>
+            <div class="cl-val">aashish-kumar-pandey-30166a198</div>
+          </div>
+        </a>
+        <div class="contact-link" style="cursor: default;">
+          <span class="cl-icon">📍</span>
+          <div>
+            <div class="cl-text">Location</div>
+            <div class="cl-val">Sector 62, Noida, India</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2.5rem;">
+        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 1rem;">Current Status</div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 1rem 1.25rem; background: var(--card); border: 1px solid rgba(74,222,128,0.3); border-radius: var(--radius);">
+          <div style="width: 9px; height: 9px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite;"></div>
+          <div>
+            <div style="font-size: 0.9rem; font-weight: 500;">Available for opportunities</div>
+            <div style="font-size: 0.78rem; color: var(--text2);">Open to full-time, contract, or remote roles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div id="form-success" style="display:none; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); border-radius: 8px; padding: 1rem; color: var(--green); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        ✓ Message sent! I'll get back to you soon.
+      </div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" id="subject" placeholder="Project inquiry, Job opportunity...">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" placeholder="Tell me about what you're working on or how I can help..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 Aashish Kumar Pandey · <a href="mailto:akpandey63076@gmail.com">akpandey63076@gmail.com</a> · <a href="https://www.linkedin.com/in/aashish-kumar-pandey-30166a198" target="_blank">LinkedIn</a></p>
+</footer>
+<script src="nav.js"></script>
+<script>
+function handleSubmit() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  if (!name || !email || !message) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  const mailtoLink = `mailto:akpandey63076@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
+  window.location.href = mailtoLink;
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
