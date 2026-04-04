@@ -245,7 +245,7 @@ main { padding-top: 64px; }
   cursor: default;
 }
 .skill-card:hover { border-color: var(--accent); color: var(--text); transform: translateY(-3px); }
-.skill-icon { font-size: 1.5rem; }
+.skill-icon { font-size: 1.8rem; line-height: 1; }
 
 /* ── PROJECT CARDS ── */
 .featured-projects { padding: 5rem 2.5rem; }
@@ -372,7 +372,9 @@ main { padding-top: 64px; }
   padding: 5px 12px;
   background: var(--bg3); border: 1px solid var(--border);
   border-radius: 6px; font-size: 0.82rem; color: var(--text);
+  display: inline-flex; align-items: center; gap: 6px;
 }
+.tag i { font-size: 1rem; line-height: 1; }
 .cert-list { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
 .cert-item {
   display: flex; align-items: center; gap: 10px;
