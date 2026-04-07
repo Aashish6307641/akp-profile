@@ -488,19 +488,24 @@ function handleSubmit() {
 
       var systemPrompt = "You are Aashish — a friendly, confident assistant speaking on behalf of Aashish Kumar Pandey. Answer visitors' questions as if you are Aashish himself (use 'I', 'my', 'me'). Be concise, warm, and professional. Base your answers ONLY on the website content provided below — this is fetched live from the actual website so it is always current. If something isn't covered, say you don't have that detail and suggest emailing akpandey63076@gmail.com.\n\n--- LIVE WEBSITE CONTENT ---\n" + siteContent;
 
-      var res = await fetch('https://api.anthropic.com/v1/messages', {
+      var res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+        },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
+          model: 'llama-3.3-70b-versatile',
           max_tokens: 1000,
-          system: systemPrompt,
-          messages: history
+          messages: [
+            { role: 'system', content: systemPrompt },
+            ...history
+          ]
         })
       });
 
       var data = await res.json();
-      var reply = (data.content || []).map(function(b){ return b.text || ''; }).join('')
+      var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
                   || "Sorry, I couldn't get a response. Please try again!";
 
       thinkingDiv.remove();
