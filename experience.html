@@ -70,13 +70,13 @@
           <div class="exp-company">Byte Digital Consulting Pty Ltd</div>
           <div class="exp-location">Noida, India &nbsp;·&nbsp; Oct 2024 – Feb 2026 · 1 year 4 months</div>
           <ul class="exp-list">
-  <li>Acted as sole backend engineer across all client projects — owning end-to-end architecture planning, database design, API development, deployment, and production maintenance for 3 live Australian systems.</li>
+  <li>Sole backend engineer across 3 live Australian production systems — owned full lifecycle from schema design and API architecture to AWS deployment, Nginx/Gunicorn config, and post-launch maintenance. No handoffs — every production decision was mine.</li>
   <li>Delivered 3 full-scale backend systems across fitness, social media, and edtech domains — each supporting multi-role user management, complex business logic, and independent AWS deployment pipelines.</li>
   <li>Built Django REST APIs with role-based access control, ORM-level query optimization, and JWT authentication — designed for high-concurrency production workloads.</li>
-  <li>Designed and managed AWS infrastructure across all projects — EC2, S3, SQS, Lambda, SNS, Route 53 — maintaining 99.9% uptime across production environments.</li>
+  <li>Designed and managed AWS infrastructure independently across all 3 projects — EC2 for app servers, S3 for media/content, SQS for async job queuing, Lambda + SNS for event-driven notifications, Route 53 for DNS. Maintained 99.9% uptime with zero dedicated DevOps support.</li>
   <li>Integrated Stripe Connect (marketplace payments + KYC), Google Maps API, and YouTube API into production systems — handling real financial transactions for end users.</li>
   <li>Containerized all services with Docker and managed Linux server deployments using Gunicorn, Nginx, and systemd with CI/CD pipelines.</li>
-  <li>Set up Datadog for application monitoring, alerting, and log-based troubleshooting — enabling proactive incident detection across all production environments.</li>
+  <li>Set up Datadog across all 3 production environments — configured custom dashboards, log-based alerts, and error tracking. Personally handled incident detection, root cause analysis, and hotfixes in production with no escalation path.</li>
 </ul>
 <div class="project-tech" style="margin-top: 1rem;">
   <span>Django</span><span>PostgreSQL</span><span>AWS</span><span>Docker</span><span>Stripe Connect</span><span>CI/CD</span><span>Datadog</span><span>Linux</span><span>DRF</span>
@@ -92,8 +92,8 @@
           <div class="exp-company">Collegedunia Web Pvt Ltd</div>
           <div class="exp-location">Gurugram, India &nbsp;·&nbsp; 2 years 5 months</div>
           <ul class="exp-list">
-  <li>Built and optimized Django REST APIs for high-traffic applications serving millions of users — implementing caching strategies, query optimization, and database performance improvements to handle peak load.</li>
-  <li>Engineered a Google Rank Tracker SEO tool that drove <strong style="color: var(--green)">20% organic traffic growth</strong> — tracking 500+ keywords across daily, weekly, and quarterly reporting cadences using Celery, SERP API, and Google APIs.</li>
+  <li>Built and optimized Django REST APIs for high-traffic applications serving millions of users — implemented Redis caching for repeated query patterns, used select_related and prefetch_related to eliminate N+1 queries, and reduced average DB load significantly during peak traffic.</li>
+  <li>Architected and owned Google Rank Tracker end-to-end — designed Celery beat scheduling over cron for per-task retry isolation, implemented token-based throttling to handle SERP API rate limits across 500+ keywords. Directly drove 20% organic traffic growth tracked over 6 months.</li>
   <li>Built ML-powered data pipelines and backend tools in collaboration with the Data Science and SEO teams — directly supporting content strategy and search performance at scale.</li>
   <li>Developed an automated review moderation system using BERT-based text models, sentiment analysis, and OCR — replacing manual approval workflows for a high-traffic edtech platform.</li>
   <li>Wrote Python automation scripts for web scraping, backend utility services, and deployment workflows using Gunicorn, Nginx, and bash.</li>
