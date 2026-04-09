@@ -18,7 +18,11 @@
   --radius: 12px;
   --radius-lg: 20px;
 }
-
+  .edu-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 4px;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
