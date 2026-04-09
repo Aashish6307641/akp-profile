@@ -38,125 +38,187 @@
   <div style="padding: 5rem 2.5rem;">
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.75rem;">
 
+      <!-- 01 -->
       <div class="proj-card">
         <div class="proj-num">01</div>
         <div class="project-tag" style="margin-bottom: 4px;">Australia · Fitness Tech</div>
         <h3>Fitness & Class Management System</h3>
-       
-<ul class="exp-list">
-  <li>Built a full-stack fitness marketplace platform for an Australian gym chain — supporting 3 user roles (Admin, Instructor, Trainee/User) with independent dashboards and permission layers.</li>
-  <li>Designed instructor onboarding with Stripe Connect KYC integration — enabling instructors to receive marketplace payments directly with automatic refund handling on class cancellations.</li>
-  <li>Implemented complex class scheduling engine supporting single and recurring classes — with instructor-level conflict detection preventing double-booking across multiple locations.</li>
-  <li>Built cancellation and rescheduling workflows for both single and recurring class types — triggering automatic refunds via Stripe and user notifications via AWS SQS.</li>
-  <li>Integrated Google Maps API for multi-location class discovery and AWS S3 for admin content uploads used in instructor class templates.</li>
-  <li>Supported OTP-based login for users — allowing booking without traditional signup, reducing friction for class registration.</li>
-<li>3 user roles · Stripe marketplace payments · Live in production, Australia</li>
-</ul>
+        <ul class="exp-list">
+          <li>Built a full-stack fitness marketplace platform for an Australian gym chain — supporting 3 user roles (Admin, Instructor, Trainee/User) with independent dashboards and permission layers.</li>
+          <li>Designed instructor onboarding with Stripe Connect KYC integration — enabling instructors to receive marketplace payments directly with automatic refund handling on class cancellations.</li>
+          <li>Implemented complex class scheduling engine supporting single and recurring classes — with instructor-level conflict detection preventing double-booking across multiple locations.</li>
+          <li>Built cancellation and rescheduling workflows for both single and recurring class types — triggering automatic refunds via Stripe and user notifications via AWS SQS.</li>
+          <li>Integrated Google Maps API for multi-location class discovery and AWS S3 for admin content uploads used in instructor class templates.</li>
+          <li>Supported OTP-based login for users — allowing booking without traditional signup, reducing friction for class registration.</li>
+          <li>3 user roles · Stripe marketplace payments · Live in production, Australia</li>
+        </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design &amp; Ownership</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>Chose SQS for refund triggers over synchronous Stripe webhook handling — payment state decoupled from booking logic, auto-retries on failure without user impact.</li>
+            <li>Scheduling conflict detection handled at DB constraint level — prevents double-booking without needing application-layer locks.</li>
+            <li>Single JWT auth layer with role-based middleware serving 3 completely separate dashboards — no duplicate permission logic across Admin, Instructor, and Trainee.</li>
+            <li>Sole engineer end-to-end: EC2 provisioning, Nginx + Gunicorn config, SSL setup, S3 bucket policies, and Datadog alerting — no DevOps team, no handoffs.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Django</span><span>PostgreSQL</span><span>AWS EC2</span><span>AWS S3</span><span>AWS SQS</span><span>Stripe Connect</span><span>Google Maps API</span><span>DRF</span><span>Docker</span>
-
         </div>
       </div>
 
+      <!-- 02 -->
       <div class="proj-card">
         <div class="proj-num">02</div>
         <div class="project-tag" style="margin-bottom: 4px;">Australia · EdTech</div>
         <h3>Mathematics Learning Application</h3>
         <ul class="exp-list">
-  <li>Built a dual-variant mathematics learning platform (B2C and B2B) with adaptive learning, AI-generated content, and multi-role dashboards for students, teachers, admins, and parents.</li>
-  <li>B2B: Admin can onboard teachers per class/section, customise LMS curriculum, and track student and teacher progress. Teachers can onboard students, assign work, and view auto-calculated progress reports.</li>
-  <li>Student learning engine supports audio, video, and image content with chapter-end quizzes — and an AI section powered by OpenAI that dynamically serves questions from DB based on student level assessed by ML model.</li>
-  <li>Adaptive difficulty system automatically increases or decreases question hardness based on student behaviour and performance history — built using scikit-learn models.</li>
-  <li>Teachers and admins can suggest and generate new content using integrated OpenAI API — reducing manual content creation effort.</li>
-  <li>Parent dashboard provides full visibility into student progress history and learning activity.</li>
-<li>B2B + B2C · AI-adaptive difficulty · OpenAI + scikit-learn in production</li>
+          <li>Built a dual-variant mathematics learning platform (B2C and B2B) with adaptive learning, AI-generated content, and multi-role dashboards for students, teachers, admins, and parents.</li>
+          <li>B2B: Admin can onboard teachers per class/section, customise LMS curriculum, and track student and teacher progress. Teachers can onboard students, assign work, and view auto-calculated progress reports.</li>
+          <li>Student learning engine supports audio, video, and image content with chapter-end quizzes — and an AI section powered by OpenAI that dynamically serves questions from DB based on student level assessed by ML model.</li>
+          <li>Adaptive difficulty system automatically increases or decreases question hardness based on student behaviour and performance history — built using scikit-learn models.</li>
+          <li>Teachers and admins can suggest and generate new content using integrated OpenAI API — reducing manual content creation effort.</li>
+          <li>Parent dashboard provides full visibility into student progress history and learning activity.</li>
+          <li>B2B + B2C · AI-adaptive difficulty · OpenAI + scikit-learn in production</li>
         </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design &amp; Ownership</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>B2B and B2C served from a single Django codebase — separated via org-level middleware, avoiding two separate deployments and duplicate business logic.</li>
+            <li>OpenAI API calls handled as async background tasks — content generation latency never blocks student-facing UI responses.</li>
+            <li>Adaptive ML scoring kept as a separate service — model updates and retraining don't require API redeployment or downtime.</li>
+            <li>Sole engineer: full AWS setup, Datadog monitoring, and independent CI/CD pipelines for both B2B and B2C variants.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Django</span><span>PostgreSQL</span><span>AWS S3</span><span>OpenAI API</span><span>scikit-learn</span><span>Datadog</span><span>AWS</span><span>DRF</span><span>Docker</span>
         </div>
       </div>
 
+      <!-- 03 -->
       <div class="proj-card">
         <div class="proj-num">03</div>
         <div class="project-tag" style="margin-bottom: 4px;">Security · Social</div>
         <h3>Secure Social Media Platform</h3>
         <ul class="exp-list">
-  <li>Built a privacy-first social media platform with rich content creation — supporting stories with chapters, image/text media, painting canvas, built-in YouTube playlists, and a secure personal vault for document storage (DigiLocker-style).</li>
-  <li>Designed a dual-role user model — Normal Users (view-only access) and Admin Users (full content + vault access) — enabling parent/supervisor control over connected accounts.</li>
-  <li>Implemented two methods for adding connections: manual account addition and QR-based profile sharing — auto-linking on scan and login for frictionless onboarding.</li>
-  <li>Built child safety and content moderation layer — blocking vulgar words across all text, headings, and uploaded documents at the API level.</li>
-  <li>Used AWS Lambda and SNS/SQS for event-driven notifications and async processing — with Route 53 for domain management and Datadog for full observability.</li>
-<li>Event-driven · Lambda + SNS/SQS · Full Datadog observability</li>
+          <li>Built a privacy-first social media platform with rich content creation — supporting stories with chapters, image/text media, painting canvas, built-in YouTube playlists, and a secure personal vault for document storage (DigiLocker-style).</li>
+          <li>Designed a dual-role user model — Normal Users (view-only access) and Admin Users (full content + vault access) — enabling parent/supervisor control over connected accounts.</li>
+          <li>Implemented two methods for adding connections: manual account addition and QR-based profile sharing — auto-linking on scan and login for frictionless onboarding.</li>
+          <li>Built child safety and content moderation layer — blocking vulgar words across all text, headings, and uploaded documents at the API level.</li>
+          <li>Used AWS Lambda and SNS/SQS for event-driven notifications and async processing — with Route 53 for domain management and Datadog for full observability.</li>
+          <li>Event-driven · Lambda + SNS/SQS · Full Datadog observability</li>
         </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design &amp; Ownership</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>Lambda + SNS/SQS chosen over polling — notification delivery scales independently from the core Django app with no tight coupling between services.</li>
+            <li>Vulgarity filter placed at API serializer level — single enforcement point across all content types, no per-view handling needed.</li>
+            <li>Parent-Child permission model built as a DB-level relationship — access checks happen at the queryset layer, not scattered across individual views.</li>
+            <li>Sole engineer: architecture decisions, AWS setup, deployment, Datadog configuration, and ongoing production maintenance.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Python</span><span>Django</span><span>PostgreSQL</span><span>AWS Lambda</span><span>AWS SNS</span><span>AWS SQS</span><span>Route 53</span><span>Datadog</span><span>Docker</span>
-
         </div>
       </div>
 
+      <!-- 04 -->
       <div class="proj-card">
         <div class="proj-num">04</div>
         <div class="project-tag" style="margin-bottom: 4px;">SEO Automation</div>
         <h3>Google Rank Tracker</h3>
         <ul class="exp-list">
-  <li>Built a comprehensive SEO analytics and rank tracking system used daily by Collegedunia's SEO team to monitor and improve organic search performance.</li>
-  <li>Consumed Google APIs to identify related keywords and high search-volume trending terms based on SEO team inputs — expanding keyword coverage automatically.</li>
-  <li>Integrated Google SERP API to pull daily search rankings for Collegedunia's own pages and competitor pages — enabling side-by-side performance comparison.</li>
-  <li>Scheduled automated analysis jobs across hundreds of keywords with configurable daily, weekly, and quarterly reporting cadences using Celery.</li>
-  <li>Tracked additional SEO metrics beyond ranking — including traffic estimates, SERP feature presence, and competitor gap analysis.</li>
-  <li>Directly contributed to 20% organic traffic growth by enabling the SEO team to act on real-time ranking data at scale.</li>
-<li>500+ keywords · 20% traffic growth · Used daily by SEO team</li>
+          <li>Built a comprehensive SEO analytics and rank tracking system used daily by Collegedunia's SEO team to monitor and improve organic search performance.</li>
+          <li>Consumed Google APIs to identify related keywords and high search-volume trending terms based on SEO team inputs — expanding keyword coverage automatically.</li>
+          <li>Integrated Google SERP API to pull daily search rankings for Collegedunia's own pages and competitor pages — enabling side-by-side performance comparison.</li>
+          <li>Scheduled automated analysis jobs across hundreds of keywords with configurable daily, weekly, and quarterly reporting cadences using Celery.</li>
+          <li>Tracked additional SEO metrics beyond ranking — including traffic estimates, SERP feature presence, and competitor gap analysis.</li>
+          <li>Directly contributed to 20% organic traffic growth by enabling the SEO team to act on real-time ranking data at scale.</li>
+          <li>500+ keywords · 20% traffic growth · Used daily by SEO team</li>
         </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design &amp; Ownership</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>Celery beat over cron — per-keyword task isolation means one SERP API failure doesn't block the remaining 499+ keyword jobs.</li>
+            <li>Separate Celery queues for daily, weekly, and quarterly jobs — heavy quarterly reports don't delay time-sensitive daily ranking checks.</li>
+            <li>SERP API rate limits handled via task-level throttling — no API bans, no manual intervention needed in production across the full run lifetime.</li>
+            <li>PostgreSQL schema designed for competitor vs own-page comparison queries — ranking history stored relationally for efficient side-by-side analysis.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Google APIs</span><span>SERP API</span><span>Celery</span><span>PostgreSQL</span><span>BeautifulSoup</span><span>Pandas</span><span>Python</span><span>SEO Analytics</span>
         </div>
       </div>
 
+      <!-- 05 -->
       <div class="proj-card">
         <div class="proj-num">05</div>
         <div class="project-tag" style="margin-bottom: 4px;">ML · News</div>
         <h3>News Hub</h3>
         <ul class="exp-list">
-  <li>Built an internal news aggregation platform that scraped, categorised, and published content from multiple Google news sources to drive organic reach for Collegedunia.</li>
-  <li>Automated data collection from multiple external websites using Selenium and BeautifulSoup — scheduling ingestion at regular intervals.</li>
-  <li>Applied ML-based categorisation and keyword tagging to classify articles by topic — making content structured and searchable.</li>
-  <li>Served categorised news on an internal-facing website to support the content and SEO teams with fresh, relevant material.</li>
-  <li>Built with Django, FastAPI, Pandas, and Jinja2 with AJAX-based dynamic content loading.</li>
-<li>Multi-source scraping · ML categorization · Internal platform</li>
+          <li>Built an internal news aggregation platform that scraped, categorised, and published content from multiple Google news sources to drive organic reach for Collegedunia.</li>
+          <li>Automated data collection from multiple external websites using Selenium and BeautifulSoup — scheduling ingestion at regular intervals.</li>
+          <li>Applied ML-based categorisation and keyword tagging to classify articles by topic — making content structured and searchable.</li>
+          <li>Served categorised news on an internal-facing website to support the content and SEO teams with fresh, relevant material.</li>
+          <li>Built with Django, FastAPI, Pandas, and Jinja2 with AJAX-based dynamic content loading.</li>
+          <li>Multi-source scraping · ML categorization · Internal platform</li>
         </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>FastAPI used for internal data serving, Django for admin and content management — clear responsibility boundary between the two, avoiding framework overlap.</li>
+            <li>Scraping jobs isolated per source — one failing website doesn't break ingestion from other sources.</li>
+            <li>ML categorisation runs as a post-scrape async step — raw content stored first, categorised separately, allowing re-categorisation without re-scraping.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Django</span><span>FastAPI</span><span>Selenium</span><span>BeautifulSoup</span><span>Pandas</span><span>ML Models</span><span>Jinja2</span><span>AJAX</span>
         </div>
       </div>
 
+      <!-- 06 -->
       <div class="proj-card">
         <div class="proj-num">06</div>
         <div class="project-tag" style="margin-bottom: 4px;">AI · Biometrics</div>
         <h3>Biometric Face Unlock</h3>
         <ul class="exp-list">
-  <li>Built a two-mode system — Train and Recognise — where a user can register by capturing ~400 face images via webcam, which are used to train a personalised face recognition model.</li>
-  <li>Recognition mode scans live camera feed, identifies the person, and displays a confidence percentage — unlocking a welcome screen at 85%+ confidence threshold.</li>
-  <li>Integrated real-time emotion detection alongside face recognition — classifying expressions (happy, angry, sad, and more) and showing contextual suggestions based on detected emotion.</li>
-  <li>Built using OpenCV, Haarcascade Frontal Face algorithm for detection, and NumPy/Pandas for data handling and model training workflows.</li>
-</ul>       
+          <li>Built a two-mode system — Train and Recognise — where a user can register by capturing ~400 face images via webcam, which are used to train a personalised face recognition model.</li>
+          <li>Recognition mode scans live camera feed, identifies the person, and displays a confidence percentage — unlocking a welcome screen at 85%+ confidence threshold.</li>
+          <li>Integrated real-time emotion detection alongside face recognition — classifying expressions (happy, angry, sad, and more) and showing contextual suggestions based on detected emotion.</li>
+          <li>Built using OpenCV, Haarcascade Frontal Face algorithm for detection, and NumPy/Pandas for data handling and model training workflows.</li>
+        </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ Design Decisions</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>Train and Recognise modes kept deliberately separate — training pipeline is compute-heavy and offline; recognition must be real-time with no training overhead.</li>
+            <li>85% confidence threshold chosen after iterative testing — below this, false positives increased significantly under varied lighting conditions.</li>
+            <li>Emotion detection runs as a parallel pipeline — does not add latency to the core face recognition result.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Python</span><span>OpenCV</span><span>Haarcascade</span><span>NumPy</span><span>Pandas</span><span>Computer Vision</span>
         </div>
       </div>
 
+      <!-- 07 -->
       <div class="proj-card">
         <div class="proj-num">07</div>
         <div class="project-tag" style="margin-bottom: 4px;">ML · Content Moderation</div>
         <h3>Review Auto-Approval System</h3>
-      
         <ul class="exp-list">
-  <li> Built an end-to-end automated review moderation pipeline for a high-traffic edtech platform — replacing manual review approval with an ML-driven system.</li>
-  <li> Implemented multi-layer content filtering: duplicate detection, gibberish classification, vulgarity filtering, and generic review identification using ML algorithms and BERT-based text models.</li>
-  <li> Integrated sentiment analysis to classify student reviews as positive/negative, enabling structured feedback collection at scale.</li>
-  <li> Added OCR-based document scanning to extract and validate content from uploaded student documents.</li>
-  <li> Built on Django + PostgreSQL with Cashfree API integration for payment workflow execution tied to review submission.</li>
-</ul>
-      
+          <li>Built an end-to-end automated review moderation pipeline for a high-traffic edtech platform — replacing manual review approval with an ML-driven system.</li>
+          <li>Implemented multi-layer content filtering: duplicate detection, gibberish classification, vulgarity filtering, and generic review identification using ML algorithms and BERT-based text models.</li>
+          <li>Integrated sentiment analysis to classify student reviews as positive/negative, enabling structured feedback collection at scale.</li>
+          <li>Added OCR-based document scanning to extract and validate content from uploaded student documents.</li>
+          <li>Built on Django + PostgreSQL with Cashfree API integration for payment workflow execution tied to review submission.</li>
+        </ul>
+        <details style="margin-top: 1rem; margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">⚙️ System Design</summary>
+          <ul class="exp-list" style="margin-top: 0.75rem;">
+            <li>Multi-layer pipeline designed as sequential filters — cheap checks (duplicate detection) run first, expensive ML models (BERT) run last to minimize unnecessary compute.</li>
+            <li>Each filter layer built independently — new filters can be added or removed without touching other layers in the pipeline.</li>
+            <li>OCR isolated as a pre-processing stage — document content normalized to plain text before entering the same moderation pipeline as typed reviews, avoiding duplicate logic.</li>
+          </ul>
+        </details>
         <div class="proj-tags">
           <span>Django</span><span>PostgreSQL</span><span>BERT</span><span>scikit-learn</span><span>Pandas</span><span>OCR</span><span>Sentiment Analysis</span><span>Cashfree API</span>
         </div>
