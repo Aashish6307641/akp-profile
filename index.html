@@ -42,25 +42,32 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="code-block">
-        <div class="code-header">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="code-filename">api_server.py</span>
-        </div>
-        <pre class="code-body"><span class="kw">import</span> pandas <span class="kw">as</span> pd
-<span class="kw">import</span> numpy <span class="kw">as</span> np
-<span class="kw">from</span> pipeline <span class="kw">import</span> RiskEngine
-
-<span class="cm">@pipeline.task(<span class="str">"risk-performance"</span>)</span>
-<span class="kw">async def</span> <span class="fn">process_portfolio</span>(data):
-    df = pd.DataFrame(data)
-    <span class="cm"># Compute risk metrics</span>
-    metrics = RiskEngine.compute(df)
-    <span class="kw">return</span> {<span class="str">"var"</span>: metrics.value_at_risk,
-            <span class="str">"sharpe"</span>: metrics.sharpe_ratio,
-            <span class="str">"status"</span>: <span class="str">"processed"</span>}</pre>
-      </div>
+  <div class="code-block">
+    <div class="code-header">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="code-filename">market_data_ingestion.py</span>
     </div>
+    <pre class="code-body"><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> boto3
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+<span class="kw">def</span> <span class="fn">ingest_market_data</span>(provider: str, symbols: list) -> dict:
+    raw = fetch_from_provider(provider, symbols)
+
+    df = pd.DataFrame(raw)
+    df.dropna(subset=[<span class="str">"close"</span>, <span class="str">"volume"</span>], inplace=<span class="kw">True</span>)
+    df[<span class="str">"timestamp"</span>] = pd.to_datetime(df[<span class="str">"timestamp"</span>])
+    df.sort_values(<span class="str">"timestamp"</span>, inplace=<span class="kw">True</span>)
+
+    <span class="cm"># Upload to S3 data lake</span>
+    s3_key = <span class="fn">f</span><span class="str">"market/{provider}/{datetime.today().date()}.parquet"</span>
+    df.to_parquet(<span class="fn">f</span><span class="str">"s3://data-lake/{s3_key}"</span>)
+
+    <span class="kw">return</span> {<span class="str">"rows_ingested"</span>: len(df),
+            <span class="str">"provider"</span>: provider,
+            <span class="str">"status"</span>: <span class="str">"success"</span>}</pre>
+  </div>
+</div>
   </section>
 
   <section class="stats">
