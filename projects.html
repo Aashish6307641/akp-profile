@@ -42,9 +42,18 @@
         <div class="proj-num">01</div>
         <div class="project-tag" style="margin-bottom: 4px;">Australia · Fitness Tech</div>
         <h3>Fitness & Class Management System</h3>
-        <p>Complete class scheduling and membership platform for a leading Australian gym chain. Features include bookings, trainer management, payment processing, and role-based access control with a secure, high-availability backend.</p>
+        <p>
+<ul class="exp-list">
+  <li>Built a full-stack fitness marketplace platform for an Australian gym chain — supporting 3 user roles (Admin, Instructor, Trainee/User) with independent dashboards and permission layers.</li>
+  <li>Designed instructor onboarding with Stripe Connect KYC integration — enabling instructors to receive marketplace payments directly with automatic refund handling on class cancellations.</li>
+  <li>Implemented complex class scheduling engine supporting single and recurring classes — with instructor-level conflict detection preventing double-booking across multiple locations.</li>
+  <li>Built cancellation and rescheduling workflows for both single and recurring class types — triggering automatic refunds via Stripe and user notifications via AWS SQS.</li>
+  <li>Integrated Google Maps API for multi-location class discovery and AWS S3 for admin content uploads used in instructor class templates.</li>
+  <li>Supported OTP-based login for users — allowing booking without traditional signup, reducing friction for class registration.</li>
+</ul></p>
         <div class="proj-tags">
-          <span>Django</span><span>PostgreSQL</span><span>AWS</span><span>DRF</span><span>Role-Based Access</span>
+          <span>Django</span><span>PostgreSQL</span><span>AWS EC2</span><span>AWS S3</span><span>AWS SQS</span><span>Stripe Connect</span><span>Google Maps API</span><span>DRF</span><span>Docker</span>
+
         </div>
       </div>
 
@@ -52,9 +61,16 @@
         <div class="proj-num">02</div>
         <div class="project-tag" style="margin-bottom: 4px;">Australia · EdTech</div>
         <h3>Mathematics Learning Application</h3>
-        <p>Scalable learning platform for students with lesson modules, quizzes, performance tracking, and parent dashboards. Built with Celery for smooth async workflows and high engagement.</p>
+        <p>ul class="exp-list">
+  <li>Built a dual-variant mathematics learning platform (B2C and B2B) with adaptive learning, AI-generated content, and multi-role dashboards for students, teachers, admins, and parents.</li>
+  <li>B2B: Admin can onboard teachers per class/section, customise LMS curriculum, and track student and teacher progress. Teachers can onboard students, assign work, and view auto-calculated progress reports.</li>
+  <li>Student learning engine supports audio, video, and image content with chapter-end quizzes — and an AI section powered by OpenAI that dynamically serves questions from DB based on student level assessed by ML model.</li>
+  <li>Adaptive difficulty system automatically increases or decreases question hardness based on student behaviour and performance history — built using scikit-learn models.</li>
+  <li>Teachers and admins can suggest and generate new content using integrated OpenAI API — reducing manual content creation effort.</li>
+  <li>Parent dashboard provides full visibility into student progress history and learning activity.</li>
+</ul></p>
         <div class="proj-tags">
-          <span>Django</span><span>PostgreSQL</span><span>Celery</span><span>DRF</span>
+          <span>Django</span><span>PostgreSQL</span><span>AWS S3</span><span>OpenAI API</span><span>scikit-learn</span><span>Datadog</span><span>AWS</span><span>DRF</span><span>Docker</span>
         </div>
       </div>
 
@@ -62,9 +78,16 @@
         <div class="proj-num">03</div>
         <div class="project-tag" style="margin-bottom: 4px;">Security · Social</div>
         <h3>Secure Social Media Platform</h3>
-        <p>Privacy-focused social application with strong authentication, Parent–Child account control, safe messaging, and secure media workflows. Monitored via Datadog for reliability.</p>
+        <p>ul class="exp-list">
+  <li>Built a privacy-first social media platform with rich content creation — supporting stories with chapters, image/text media, painting canvas, built-in YouTube playlists, and a secure personal vault for document storage (DigiLocker-style).</li>
+  <li>Designed a dual-role user model — Normal Users (view-only access) and Admin Users (full content + vault access) — enabling parent/supervisor control over connected accounts.</li>
+  <li>Implemented two methods for adding connections: manual account addition and QR-based profile sharing — auto-linking on scan and login for frictionless onboarding.</li>
+  <li>Built child safety and content moderation layer — blocking vulgar words across all text, headings, and uploaded documents at the API level.</li>
+  <li>Used AWS Lambda and SNS/SQS for event-driven notifications and async processing — with Route 53 for domain management and Datadog for full observability.</li>
+</ul></p>
         <div class="proj-tags">
-          <span>Python</span><span>Django</span><span>Redis</span><span>PostgreSQL</span><span>AWS Lambda</span><span>Datadog</span>
+          <span>Python</span><span>Django</span><span>PostgreSQL</span><span>AWS Lambda</span><span>AWS SNS</span><span>AWS SQS</span><span>Route 53</span><span>Datadog</span><span>Docker</span>
+
         </div>
       </div>
 
